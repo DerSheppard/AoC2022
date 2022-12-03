@@ -5,6 +5,7 @@ import java.io.File
 
 class Day01Runner : DayRunner(Day01(readInput("input/input01")))
 class Day02Runner : DayRunner(Day02(readInput("input/input02")))
+class Day03Runner : DayRunner(Day03(readInput("input/input03")))
 
 abstract class DayRunner(private val day: Day) {
 
