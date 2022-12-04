@@ -14,6 +14,6 @@ class Day04(override val raw: String) : Day {
     }
 
     private fun getSectors(): List<List<Int>> {
-        return lines.map { it.replace(Regex("[-,]"), " ").split(" ").map(String::toInt) }
+        return lines.map { it.split('-', ',').map(String::toInt) }
     }
 }
