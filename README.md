@@ -15,3 +15,4 @@ My Advent of Code 2022 solution, written in Kotlin
 * [Day 5](https://github.com/DerSheppard/AoC2022/blob/main/src/main/kotlin/org/sheppard/aoc/Day05.kt)
 * [Day 6](https://github.com/DerSheppard/AoC2022/blob/main/src/main/kotlin/org/sheppard/aoc/Day06.kt)
 * [Day 7](https://github.com/DerSheppard/AoC2022/blob/main/src/main/kotlin/org/sheppard/aoc/Day07.kt)
+* [Day 8](https://github.com/DerSheppard/AoC2022/blob/main/src/main/kotlin/org/sheppard/aoc/Day08.kt)
