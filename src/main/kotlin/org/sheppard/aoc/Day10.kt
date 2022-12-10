@@ -17,7 +17,7 @@ class Day10(override val raw: String) : Day {
         val cpu = CPU()
         instructions.forEach { instr -> cpu.executeInstruction(instr) }
 
-        val sb = StringBuffer()
+        val sb = StringBuilder()
         for (i in cpu.xHistory.indices) {
             val pos = i % 40
             if (pos == 0) sb.appendLine()
