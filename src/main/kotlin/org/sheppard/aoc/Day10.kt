@@ -22,8 +22,8 @@ class Day10(override val raw: String) : Day {
             val pos = i % 40
             if (pos == 0) sb.appendLine()
 
-            if (pos >= cpu.xHistory[i] - 1 && pos <= cpu.xHistory[i] + 1) sb.append('#')
-            else sb.append('.')
+            if (pos >= cpu.xHistory[i] - 1 && pos <= cpu.xHistory[i] + 1) sb.append('█')
+            else sb.append(' ')
         }
 
         return sb.toString()
