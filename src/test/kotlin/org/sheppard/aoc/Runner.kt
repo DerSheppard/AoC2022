@@ -15,6 +15,7 @@ class Day09Runner : DayRunner(Day09(readInput("input/input09")))
 class Day10Runner : DayRunner(Day10(readInput("input/input10")))
 class Day11Runner : DayRunner(Day11(readInput("input/input11")))
 class Day12Runner : DayRunner(Day12(readInput("input/input12")))
+class Day13Runner : DayRunner(Day13(readInput("input/input13")))
 
 abstract class DayRunner(private val day: Day) {
 
