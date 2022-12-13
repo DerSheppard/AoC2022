@@ -22,12 +22,10 @@ class Day02(override val raw: String) : Day {
         return (me.code - 64) + score
     }
 
-    private fun getStrategy(opponent: Char, strategy: Char): Int {
-        return when (strategy) {
-            'X' -> (getScore(opponent, winCondition[opponent] ?: throw IllegalStateException()))
-            'Y' -> (getScore(opponent, opponent))
-            'Z' -> (getScore(opponent, loseCondition[opponent] ?: throw IllegalStateException()))
-            else -> throw IllegalStateException()
-        }
+    private fun getStrategy(opponent: Char, strategy: Char): Int = when (strategy) {
+        'X' -> (getScore(opponent, winCondition[opponent] ?: throw IllegalStateException()))
+        'Y' -> (getScore(opponent, opponent))
+        'Z' -> (getScore(opponent, loseCondition[opponent] ?: throw IllegalStateException()))
+        else -> throw IllegalStateException()
     }
 }

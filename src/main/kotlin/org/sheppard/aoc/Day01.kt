@@ -11,7 +11,6 @@ class Day01(override val raw: String) : Day {
     }
 
     private fun getKcals(): List<Int> {
-        return raw.split("\n\n")
-            .map { s -> s.lines().filter { l -> l != "" }.map(String::toInt).reduce { sum, e -> sum + e } }
+        return raw.split("\n\n").map { s -> s.lines().filter { l -> l != "" }.map(String::toInt).reduce { sum, e -> sum + e } }
     }
 }

@@ -8,11 +8,7 @@ class Day05(override val raw: String) : Day {
 
     override fun part1(): String {
         val stacks = getCrateStacks()
-
-        for (move in getMoves()) {
-            for (i in 1..move[0]) stacks[move[2] - 1].push(stacks[move[1] - 1].pop())
-        }
-
+        for (move in getMoves()) for (i in 1..move[0]) stacks[move[2] - 1].push(stacks[move[1] - 1].pop())
         return stacks.map { it.peek() }.joinToString("")
     }
 
@@ -20,7 +16,7 @@ class Day05(override val raw: String) : Day {
         val stacks = getCrateStacks()
         val temp = ArrayDeque<Char>()
 
-        for (move in getMoves()) {
+        getMoves().forEach { move ->
             for (i in 1..move[0]) temp.push(stacks[move[1] - 1].pop())
             for (i in 1..move[0]) stacks[move[2] - 1].push(temp.pop())
         }

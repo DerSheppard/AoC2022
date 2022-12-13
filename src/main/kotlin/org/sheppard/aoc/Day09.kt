@@ -51,8 +51,6 @@ class Day09(override val raw: String) : Day {
             this.move(relativeX, relativeY)
         }
 
-        override fun toString(): String {
-            return "Position(x=$x, y=$y)"
-        }
+        override fun toString(): String = "Position(x=$x, y=$y)"
     }
 }
