@@ -13,50 +13,44 @@ class Day13(override val raw: String) : Day {
         val packets = lines.map { parseLine(it) }.toMutableList()
         val divider1 = parseLine("[[2]]")
         val divider2 = parseLine("[[6]]")
-        packets += divider1
-        packets += divider2
+        packets.add(divider1)
+        packets.add(divider2)
         packets.sort()
         return ((packets.indexOf(divider1) + 1) * (packets.indexOf(divider2) + 1)).toString()
     }
 
     private fun parseLine(line: String): Node {
-        var current = Node(null, null)
+        var current = Node(null)
 
         var i = 0
-        while (++i < line.length - 1) {
-            when (val c: Char = line[i]) {
-                '[' -> {
-                    val childNode = Node(null, current)
-                    current.elements.add(childNode)
-                    current = childNode
-                }
-
-                ']' -> current = current.parent ?: throw IllegalStateException("currentNode cannot become null")
-
-                else -> {
-                    if (c.isDigit()) {
-                        val num = if (line[i + 1].isDigit()) "${c}${line[++i]}".toInt() else "$c".toInt()
-                        current.elements.add(Node(num, current))
-                    }
-                }
+        while (++i < line.length - 1) when (val c: Char = line[i]) {
+            '[' -> {
+                val childNode = Node(current)
+                current.elements.add(childNode)
+                current = childNode
+            }
+            ']' -> {
+                current = current.parent ?: throw IllegalStateException("currentNode cannot become null")
+            }
+            else -> if (c.isDigit()) {
+                val number = if (line[i + 1].isDigit()) "${c}${line[++i]}".toInt() else "$c".toInt()
+                current.elements.add(Node(current, number))
             }
         }
 
         return current
     }
 
-    private class Node(var number: Int?, val parent: Node?) : Comparable<Node> {
+    private class Node(val parent: Node?, var number: Int = Int.MIN_VALUE) : Comparable<Node> {
 
         val elements = ArrayList<Node>()
 
         override fun compareTo(other: Node): Int {
-            if (this.number != null && other.number != null) {
-                return if (this.number == other.number) 0 else this.number!! - other.number!!
-            }
+            if (this.isNumber() && other.isNumber()) return this.number - other.number
 
             //if one of them is a number, convert to list
-            if (this.number != null) this.convertToList()
-            else if (other.number != null) other.convertToList()
+            if (this.isNumber()) this.convertToList()
+            else if (other.isNumber()) other.convertToList()
 
             //list comparison
             val leftIterator = this.elements.iterator()
@@ -71,9 +65,11 @@ class Day13(override val raw: String) : Day {
             return 0
         }
 
+        private fun isNumber(): Boolean = number != Int.MIN_VALUE
+
         private fun convertToList() {
-            elements.add(Node(number, this))
-            this.number = null
+            elements.add(Node( this, number))
+            this.number = Int.MIN_VALUE
         }
     }
 }
